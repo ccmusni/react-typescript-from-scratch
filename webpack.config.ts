@@ -1,6 +1,6 @@
 import path from 'path';
-import { Configuration as WebpackConfiguration } from "webpack";
-import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+import { Configuration as WebpackConfiguration } from 'webpack';
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 interface Configuration extends WebpackConfiguration {
@@ -16,11 +16,13 @@ const config: Configuration = {
     },
     devServer: {
         historyApiFallback: true,
-        static: path.join(__dirname, "build"),
+        static: path.join(__dirname, 'build'),
         compress: true,
         port: 4000,
         open: true,
     },
+    mode: 'development',
+    devtool: 'inline-source-map',
     module: {
         rules: [
             {
@@ -33,7 +35,7 @@ const config: Configuration = {
                             '@babel/preset-env',
                             '@babel/preset-react',
                             '@babel/preset-typescript',
-                        ]
+                        ],
                     },
                 },
             },
@@ -54,7 +56,7 @@ const config: Configuration = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public/index.html'),
             filename: 'index.html',
-        })
+        }),
     ],
 };
 
